@@ -1,12 +1,12 @@
 # MisionTicCiclo3AppVentas
- ###Desarrollador: 
+ ### Desarrollador: 
  Juan Alejandro Perez
  
- ###Analista: 
+ ### Analista: 
  Juan Sebastian Camacho
  
- ###Bases de datos: 
+ ### Bases de datos: 
  @Juan Manuel Villanueva Tabares
  
- ###Product Owner
+ ### Product Owner
  @Jefersson Guevara
