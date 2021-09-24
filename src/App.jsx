@@ -1,6 +1,6 @@
 import logo from "./logo.svg";
 import "./App.css";
-import "bootstrap/dist/css/bootstrap.min.css";
+import { Link } from "react-router-dom";
 
 function App() {
   return (
@@ -10,13 +10,8 @@ function App() {
         <p>
           Edit <code>src/App.js</code> and save to reload.
         </p>
-        <button
-          className="App-link btn btn-primary"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
+        <button className="App-link btn btn-primary">
+          <Link to="/">Learn React</Link>
         </button>
       </header>
     </div>

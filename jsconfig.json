@@ -3,9 +3,10 @@
     "baseUrl": "./src",
     "paths": {
       "components/*": ["./components/*"],
-      "page/*": ["./page/*"],
+      "pages/*": ["./pages/*"],
       "images/*": ["./assets/images/*"],
-      "icon/*": ["./assets/icon/*"]
+      "icon/*": ["./assets/icon/*"],
+      "css/*": ["./css/*"]
     }
   }
 }
