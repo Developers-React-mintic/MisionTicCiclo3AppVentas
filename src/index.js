@@ -1,25 +1,14 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import "./index.css";
-import "css/style.css";
 import App from "./App";
-import Login from "pages/login.jsx";
 import reportWebVitals from "./reportWebVitals";
 import "bootstrap/dist/css/bootstrap.min.css";
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import "css/style.css";
 
 ReactDOM.render(
   <React.StrictMode>
-    <Router>
-      <Switch>
-        <Route path="/" exact>
-          <Login />
-        </Route>
-        <Route path="/app" exact>
-          <App />
-        </Route>
-      </Switch>
-    </Router>
+    <App />
   </React.StrictMode>,
   document.getElementById("root")
 );
