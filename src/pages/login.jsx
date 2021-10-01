@@ -73,7 +73,8 @@ const Login = () => {
                     <label htmlFor="rememberme">Remember Me</label>
                   </div>
                 </div>
-                <p className="f-pass cursor-pointer" href="#">
+                <p className="f-pass cursor-pointer">
+                  <Link to="" />
                   Olvidaste la clave?
                 </p>
               </div>
