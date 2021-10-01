@@ -1,4 +1,3 @@
-import react, { useEffect, useState } from "react";
 import login from "../assets/images/login.svg";
 import ojotachado from "../assets/icon/ojotachado.svg";
 import ojo from "../assets/icon/ojo.svg";
