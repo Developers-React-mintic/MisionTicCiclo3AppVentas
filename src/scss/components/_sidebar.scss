@@ -1,0 +1,21 @@
+nav {
+  width: inherit;
+  background: rgba(17, 24, 39, 1);
+  background: $fondo-login;
+  ul {
+    width: 100%;
+    padding: 0;
+
+    li {
+      a {
+        display: block;
+        text-decoration: none;
+        color: $white;
+        text-transform: uppercase;
+        img {
+          width: 30%;
+        }
+      }
+    }
+  }
+}

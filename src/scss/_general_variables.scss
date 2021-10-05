@@ -1,7 +1,8 @@
 @import url("https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap");
 
 $icons-path: "../assets/icons/";
-$icons-images: "../assets/img/";
+$icons-images: "../../assets/images/";
+$image-sidebar: "../assets/images/home.svg";
 $havelock-blue: #5a99d8;
 $dark-blue: #001941;
 $green: #6fb53a;
@@ -16,6 +17,7 @@ $fondo-login: linear-gradient(117.55deg, #262626, rgba(26, 26, 26, 0.96));
 
 body {
   font-family: "Roboto";
+  text-align: center;
 }
 #root,
 .App {
@@ -42,7 +44,15 @@ body {
 .cursor-pointer {
   cursor: pointer;
 }
-
+.w-screen {
+  width: 100vw;
+}
+.h-screen {
+  height: 100vh;
+}
+.overflow-y-scroll {
+  overflow-y: scroll;
+}
 .mw {
   &-100 {
     max-width: 100px;
@@ -382,13 +392,14 @@ $font-100: rem(100);
 
 .border {
   &-top {
-    padding-top: 10px;
     border-top: 1px solid rgba(0, 0, 0, 0.1);
   }
 
   &-left {
-    border-left: 1px solid rgba(0, 0, 0, 0.1);
-    padding-left: 30px;
+    border-left: 1px solid rgba(0, 0, 0, 0.856);
+  }
+  &-right {
+    border-right: 1px solid rgba(0, 0, 0, 0.856);
   }
 }
 
