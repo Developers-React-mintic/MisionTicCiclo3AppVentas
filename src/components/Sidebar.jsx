@@ -15,7 +15,9 @@ const Sidebar = () => {
         <li>
           <Link to="/admin/pedidos">Pedidos</Link>
         </li>
-
+        <li>
+          <Link to="/admin/users">administrar usuarios</Link>
+        </li>
         <li>
           <Link to="">Log out</Link>
         </li>
