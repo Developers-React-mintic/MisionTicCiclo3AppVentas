@@ -1,6 +1,10 @@
+import react, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import imgHome from "../assets/images/home.svg";
+import LogoutButton from "./LogoutButton";
 const Sidebar = () => {
+  // TODO ver como ocultar el sidebar con use estate o renderizacion condicional
+  const [ocultar, setOcultar] = useState(false);
   return (
     <nav className="d-flex h-100 mw-300 border-right">
       <ul>
@@ -19,7 +23,7 @@ const Sidebar = () => {
           <Link to="/admin/users">administrar usuarios</Link>
         </li>
         <li>
-          <Link to="">Log out</Link>
+          <LogoutButton />
         </li>
       </ul>
     </nav>

@@ -1,11 +1,16 @@
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import Login from "pages/login.jsx";
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Redirect,
+} from "react-router-dom";
 import Ventas from "pages/ventas.jsx";
 import Pedidos from "pages/pedidos.jsx";
 import AdminUsers from "pages/AdminUsers.jsx";
 import Admin from "pages/Admin";
 import PrivateLayout from "layouts/privateLayout";
 import AuthLayout from "layouts/authLayout";
+import Login from "pages/login";
 
 function App() {
   return (
@@ -37,12 +42,11 @@ function App() {
               </Switch>
             </PrivateLayout>
           </Route>
-
-          <Route path="/">
-            <AuthLayout>
+          <AuthLayout>
+            <Route path="/">
               <Login />
-            </AuthLayout>
-          </Route>
+            </Route>
+          </AuthLayout>
         </Switch>
       </Router>
     </>

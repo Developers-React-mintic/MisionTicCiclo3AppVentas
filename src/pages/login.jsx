@@ -1,4 +1,4 @@
-// import react, { useEffect, useState } from "react";
+import react, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import login from "../assets/images/login.svg";
 import ojotachado from "../assets/icon/ojotachado.svg";
@@ -6,10 +6,6 @@ import ojo from "../assets/icon/ojo.svg";
 const Login = () => {
   // TODO importar libreria de alertas para el login
   // TODO ver funcionalidad iniciar sesion y remember me
-  const submitForm = (e) => {
-    e.preventDefault();
-    console.log("hola");
-  };
 
   const mostrarClave = () => {
     const pass = document.getElementById("password");
@@ -24,10 +20,7 @@ const Login = () => {
   };
 
   return (
-    <form
-      onSubmit={submitForm}
-      className=" d-flex flex-column form-login mw-500 center h-100 "
-    >
+    <form className=" d-flex flex-column form-login mw-500 center h-100 ">
       <div className="d-flex flex-column login-img">
         <img src={login} alt="imagen login" />
       </div>
