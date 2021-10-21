@@ -53,6 +53,24 @@ body {
 .overflow-y-scroll {
   overflow-y: scroll;
 }
+.close {
+  width: 0;
+  transition: all ease cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+.main {
+  flex-direction: column;
+}
+.pencil {
+  margin: 0 1.25rem;
+}
+.flex-col {
+  flex-direction: column;
+}
+.fondo {
+  background: rgba(17, 24, 39, 1);
+  background: $fondo-login;
+  color: $white;
+}
 .mw {
   &-100 {
     max-width: 100px;
@@ -232,6 +250,9 @@ h6 {
     &-10 {
       margin-top: 10px;
     }
+    &-15 {
+      margin-top: 15px;
+    }
 
     &-20 {
       margin-top: 20px;
@@ -262,7 +283,7 @@ h6 {
 }
 
 .shadow {
-  box-shadow: 0px 10px 30px #00000033;
+  box-shadow: 30% #000000a2;
   border-radius: 15px;
 }
 

@@ -1,0 +1,19 @@
+.sidebar-container {
+  i.icon-sidebar {
+    padding-left: 0.25rem;
+    svg {
+      font-size: 1.25rem;
+    }
+  }
+  ul {
+    width: 100vw;
+    height: 100vh;
+    position: fixed;
+    z-index: 1;
+
+    li {
+      color: $white;
+      list-style: none;
+    }
+  }
+}

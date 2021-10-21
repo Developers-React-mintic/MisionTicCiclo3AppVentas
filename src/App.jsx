@@ -1,16 +1,10 @@
-import {
-  BrowserRouter as Router,
-  Switch,
-  Route,
-  Redirect,
-} from "react-router-dom";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import Ventas from "pages/ventas.jsx";
 import Pedidos from "pages/pedidos.jsx";
+import Productos from "pages/Productos";
 import AdminUsers from "pages/AdminUsers.jsx";
 import Admin from "pages/Admin";
 import PrivateLayout from "layouts/privateLayout";
-import AuthLayout from "layouts/authLayout";
-import Login from "pages/login";
 
 function App() {
   return (
@@ -19,9 +13,11 @@ function App() {
         <Switch>
           <Route
             path={[
+              "/",
               "/admin",
               "/admin/ventas",
               "/admin/pededidos",
+              "/admin/productos",
               "/admin/users",
             ]}
           >
@@ -32,21 +28,20 @@ function App() {
                 </Route>
                 <Route path="/admin/pedidos">
                   <Pedidos />
-                </Route>{" "}
+                </Route>
+                <Route path="/admin/productos">
+                  <Productos />
+                </Route>
                 <Route path="/admin/users">
                   <AdminUsers />
                 </Route>
                 <Route path="/admin">
                   <Admin />
                 </Route>
+                <Route path="/"></Route>
               </Switch>
             </PrivateLayout>
           </Route>
-          <AuthLayout>
-            <Route path="/">
-              <Login />
-            </Route>
-          </AuthLayout>
         </Switch>
       </Router>
     </>

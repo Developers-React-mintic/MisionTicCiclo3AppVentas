@@ -1,4 +1,3 @@
-import react, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import login from "../assets/images/login.svg";
 import ojotachado from "../assets/icon/ojotachado.svg";

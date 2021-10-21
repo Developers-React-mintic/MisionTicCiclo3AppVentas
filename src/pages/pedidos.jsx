@@ -3,9 +3,9 @@ import PauseCircleOutlineIcon from "@material-ui/icons/PauseCircleOutline";
 import Badge from "react-bootstrap/Badge";
 import SettingsIcon from "@material-ui/icons/Settings";
 import AddCircleOutlineTwoToneIcon from "@material-ui/icons/AddCircleOutlineTwoTone";
-import LocalShippingTwoToneIcon from "@material-ui/icons/LocalShippingTwoTone";
-import CheckTwoToneIcon from "@material-ui/icons/CheckTwoTone";
-import ClearTwoToneIcon from "@material-ui/icons/ClearTwoTone";
+// import LocalShippingTwoToneIcon from "@material-ui/icons/LocalShippingTwoTone";
+// import CheckTwoToneIcon from "@material-ui/icons/CheckTwoTone";
+// import ClearTwoToneIcon from "@material-ui/icons/ClearTwoTone";
 const Pedidos = () => {
   return (
     <Table striped bordered hover variant="dark">
@@ -42,51 +42,6 @@ const Pedidos = () => {
             </Badge>{" "}
           </td>
           <td>$145.000</td>
-          <th>
-            {" "}
-            <SettingsIcon color="success" />{" "}
-          </th>
-        </tr>
-        <tr>
-          <td>3</td>
-          <td>Juliana Cliente</td>
-          <td>
-            {" "}
-            <Badge pill bg="info">
-              <LocalShippingTwoToneIcon color="success" /> Despachado{" "}
-            </Badge>{" "}
-          </td>
-          <td>$45.000 </td>
-          <th>
-            {" "}
-            <SettingsIcon color="success" />{" "}
-          </th>
-        </tr>
-        <tr>
-          <td>4</td>
-          <td>Pablo Cliente</td>
-          <td>
-            {" "}
-            <Badge pill bg="success">
-              <CheckTwoToneIcon color="success" /> Entregado{" "}
-            </Badge>{" "}
-          </td>
-          <td>$75.000 </td>
-          <th>
-            {" "}
-            <SettingsIcon color="success" />{" "}
-          </th>
-        </tr>
-        <tr>
-          <td>5</td>
-          <td>Patricia Cliente</td>
-          <td>
-            {" "}
-            <Badge pill bg="danger">
-              <ClearTwoToneIcon color="success" /> Cancelado{" "}
-            </Badge>{" "}
-          </td>
-          <td>$85.000 </td>
           <th>
             {" "}
             <SettingsIcon color="success" />{" "}
