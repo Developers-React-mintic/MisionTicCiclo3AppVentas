@@ -16,7 +16,7 @@ function App() {
     <Auth0Provider
       domain="mision-tic.us.auth0.com"
       clientId="zAIuTblOYDjAjnAZ73wBYKjKi5mOb32V"
-      redirectUri="http://localhost:3000/admin"
+      redirectUri="https://developerscorpecommerce.herokuapp.com/admin"
       audience="api-autenticacion-ferreteria-mintic"
     >
       <>
