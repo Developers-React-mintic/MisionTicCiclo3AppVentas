@@ -35,7 +35,7 @@ function App() {
                 <PrivateLayout>
                   <Switch>
                     <Route path="/admin/ventas">
-                      <PrivateRoute roleList={["admin"]}>
+                      <PrivateRoute roleList={["admin", "vendedor"]}>
                         <Ventas />
                       </PrivateRoute>
                     </Route>
