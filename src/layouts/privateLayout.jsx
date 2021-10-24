@@ -6,6 +6,7 @@ import ReactLoading from "react-loading";
 import { obtenerDatosUsuario } from "utils/api";
 import { useUser } from "context/userContext";
 
+
 const PrivateLayout = ({ children }) => {
   const {
     isAuthenticated,
