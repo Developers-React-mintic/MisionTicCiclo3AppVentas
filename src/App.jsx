@@ -1,50 +1,90 @@
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import Ventas from "pages/ventas.jsx";
-import Pedidos from "pages/pedidos.jsx";
-import Productos from "pages/Productos";
-import AdminUsers from "pages/AdminUsers.jsx";
-import Admin from "pages/Admin";
-import PrivateLayout from "layouts/privateLayout";
-
+import Ventas from "pages/Admin/Ventas.jsx";
+import Productos from "pages/Admin/Productos";
+import Users from "pages/Admin/Users.jsx";
+import Admin from "pages/Admin/Admin";
+import { UserContext } from "context/userContext";
+import PrivateLayout from "layouts/PrivateLayout";
+import { useState } from "react";
+import { Auth0Provider } from "@auth0/auth0-react";
+import PrivateRoute from "components/PrivateRoute";
+import PublicLayout from "layouts/PublicLayout";
 function App() {
+  const [userData, setUserData] = useState({});
+
   return (
-    <>
-      <Router>
-        <Switch>
-          <Route
-            path={[
-              "/",
-              "/admin",
-              "/admin/ventas",
-              "/admin/pededidos",
-              "/admin/productos",
-              "/admin/users",
-            ]}
-          >
-            <PrivateLayout>
-              <Switch>
-                <Route path="/admin/ventas">
-                  <Ventas />
-                </Route>
-                <Route path="/admin/pedidos">
-                  <Pedidos />
-                </Route>
-                <Route path="/admin/productos">
-                  <Productos />
-                </Route>
-                <Route path="/admin/users">
-                  <AdminUsers />
-                </Route>
-                <Route path="/admin">
-                  <Admin />
-                </Route>
-                <Route path="/"></Route>
-              </Switch>
-            </PrivateLayout>
-          </Route>
-        </Switch>
-      </Router>
-    </>
+    <Auth0Provider
+      domain="mision-tic.us.auth0.com"
+      clientId="zAIuTblOYDjAjnAZ73wBYKjKi5mOb32V"
+      redirectUri="http://localhost:3000/admin"
+      audience="api-autenticacion-ferreteria-mintic"
+    >
+      <>
+        <UserContext.Provider value={{ userData, setUserData }}>
+          <Router>
+            <Switch>
+              <Route
+                path={[
+                  "/",
+                  "/admin",
+                  "/admin/ventas",
+                  "/admin/productos",
+                  "/admin/users",
+                ]}
+              >
+                <PrivateLayout>
+                  <Switch>
+                    <Route path="/admin/ventas">
+                      <PrivateRoute roleList={["admin"]}>
+                        <Ventas />
+                      </PrivateRoute>
+                    </Route>
+                    <Route path="/admin/productos">
+                      <PrivateRoute
+                        roleList={["admin", "vendedor"]}
+                      ></PrivateRoute>
+                      <Productos />
+                    </Route>
+                    <Route path="/admin/users">
+                      <PrivateRoute roleList={["admin"]}>
+                        <Users />
+                      </PrivateRoute>
+                    </Route>
+                    <Route path="/admin">
+                      <Admin />
+                    </Route>
+                    <Route path="/"></Route>
+                  </Switch>
+                </PrivateLayout>
+              </Route>
+            </Switch>
+          </Router>
+        </UserContext.Provider>
+      </>
+    </Auth0Provider>
+    // <Router>
+    //   <Switch>
+    //     <Route path={["/", "/ventas", "/productos", "/users"]}>
+    //       <PublicLayout>
+    //         <Switch>
+    //           <Route path="/ventas">
+    //             <Ventas />
+    //           </Route>
+    //           <Route path="/productos">
+    //             <Productos />
+    //           </Route>
+    //           <Route path="/users">
+    //             <Users />
+    //           </Route>
+
+    //           <Route path="/">
+    //             <Admin />
+    //           </Route>
+    //         </Switch>
+    //       </PublicLayout>
+    //     </Route>
+    //   </Switch>
+    // </Router>
   );
 }
 

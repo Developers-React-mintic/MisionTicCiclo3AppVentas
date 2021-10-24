@@ -1,13 +1,17 @@
-import { Link } from "react-router-dom";
+import React, { useState, useEffect } from "react";
+import { Link, useLocation } from "react-router-dom";
 import imgHome from "../assets/images/home.svg";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faStore,
   faHammer,
   faUserCircle,
+  faAngleLeft,
+  faAngleRight,
 } from "@fortawesome/free-solid-svg-icons";
-import LogoutButton from "./LogoutButton";
-const user = () => {
+import { useAuth0 } from "@auth0/auth0-react";
+import PrivateComponent from "./PrivateComponent";
+const userIcon = () => {
   return <FontAwesomeIcon icon={faUserCircle} />;
 };
 const ventas = () => {
@@ -16,39 +20,123 @@ const ventas = () => {
 const producto = () => {
   return <FontAwesomeIcon icon={faHammer} />;
 };
+const hamburger = () => {
+  return <FontAwesomeIcon icon={faAngleLeft} />;
+};
+const X = () => {
+  return <FontAwesomeIcon icon={faAngleRight} />;
+};
+
 const Sidebar = () => {
+  const { user, logout } = useAuth0();
+  const [toggleSidebar, setToggleSidebar] = useState(false);
+  const [cambioDeClase, setcambioDeClase] = useState("block");
+  const [claseBtnToggle, setclaseBtnToggle] = useState("");
+
+  useEffect(() => {
+    if (toggleSidebar) {
+      setcambioDeClase("none");
+    } else {
+      setcambioDeClase("block");
+      setclaseBtnToggle("fondo");
+    }
+  }, [toggleSidebar]);
+
+  const cerrarSesion = () => {
+    logout({ returnTo: "http://localhost:3000/" });
+    localStorage.setItem("token", null);
+  };
+
   return (
-    <nav
-      id="nav"
-      className=" sidebar d-sm-none  d-md-flex flex-col h-100 mw-300 "
-    >
-      <div className="img-home">
-        <Link to="/admin">
-          <img src={imgHome} alt="img home" />
-        </Link>
+    <div className="position-relative">
+      <div
+        className=" position-absolute btn-mostrar fondo"
+        onClick={() => {
+          setToggleSidebar(!toggleSidebar);
+        }}
+      >
+        <i>{toggleSidebar ? X() : hamburger()}</i>
       </div>
 
-      <div className="links ">
-        <Ruta text="Perfil" ruta="/admin/perfil" icono={user()} />
-        <Ruta
-          text="administrar productos"
-          ruta="/admin/productos"
-          icono={producto()}
-        />
-        <Ruta text="administrar Ventas" ruta="/admin/ventas" icono={ventas()} />
-        <Ruta text="administrar usuarios" ruta="/admin/users" icono={user()} />
-      </div>
+      <nav
+        id="nav"
+        className={`sidebar position-relative d-sm-none  d-md-${cambioDeClase} flex-col h-100  mw-300`}
+      >
+        <div
+          className={`position-absolute btn-ocultar ${claseBtnToggle}`}
+          onClick={() => {
+            setToggleSidebar(!toggleSidebar);
+          }}
+        >
+          <i>{toggleSidebar ? X() : hamburger()}</i>
+        </div>
+        <div className="img-home">
+          <Link to="/admin">
+            <img src={imgHome} alt="img home" />
+          </Link>
+        </div>
 
-      <LogoutButton />
-    </nav>
+        <div className="links ">
+          <Ruta
+            nombre="Perfil"
+            ruta="/admin/perfil"
+            icono={userIcon}
+            usuario={user}
+          />
+          <PrivateComponent roleList={["admin"]}>
+            <Ruta
+              nombre="administrar productos"
+              ruta="/admin/productos"
+              icono={producto()}
+            />
+          </PrivateComponent>
+          <PrivateComponent roleList={["admin", "vendedor"]}>
+            <Ruta
+              nombre="administrar Ventas"
+              ruta="/admin/ventas"
+              icono={ventas()}
+            />
+          </PrivateComponent>
+          <PrivateComponent roleList={["admin"]}>
+            <Ruta
+              nombre="administrar usuarios"
+              ruta="/admin/users"
+              icono={userIcon()}
+            />
+          </PrivateComponent>
+        </div>
+
+        <button onClick={() => cerrarSesion()}>Cerrar Sesión</button>
+      </nav>
+    </div>
   );
 };
 
-const Ruta = ({ text, ruta, icono }) => {
+const Ruta = ({ nombre, ruta, icono, usuario }) => {
+  const location = useLocation();
+  const [isActive, setIsActive] = useState(false);
+  console.log("usuario", usuario);
+  useEffect(() => {
+    if (location.pathname.includes(ruta)) {
+      setIsActive(true);
+    } else {
+      setIsActive(false);
+    }
+  }, [location, ruta]);
+
   return (
     <Link to={ruta}>
-      <button className="btn-sideBar">
-        <i className="icon">{icono}</i> {text}
+      <button className={`btn-sideBar ${isActive ? "isSelected" : ""}`}>
+        {usuario ? (
+          <>
+            <img src={usuario.picture} alt="imagen usuario" className="icon" />
+            {usuario.name}
+          </>
+        ) : (
+          <>
+            <i className="icon">{icono}</i> {nombre}
+          </>
+        )}
       </button>
     </Link>
   );

@@ -4,16 +4,11 @@ import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "css/style.css";
-import { Auth0Provider } from "@auth0/auth0-react";
 
 ReactDOM.render(
-  <Auth0Provider
-    domain="mision-tic.us.auth0.com"
-    clientId="zAIuTblOYDjAjnAZ73wBYKjKi5mOb32V"
-    redirectUri={window.location.origin}
-  >
+  <React.StrictMode>
     <App />
-  </Auth0Provider>,
+  </React.StrictMode>,
   document.getElementById("root")
 );
 

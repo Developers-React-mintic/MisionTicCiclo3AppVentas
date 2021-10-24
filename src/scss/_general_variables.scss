@@ -72,6 +72,9 @@ body {
   color: $white;
 }
 .mw {
+  &-50 {
+    max-width: 50px;
+  }
   &-100 {
     max-width: 100px;
   }
@@ -79,7 +82,7 @@ body {
     max-width: 200px;
   }
   &-300 {
-    max-width: 300px;
+    max-width: 340px;
   }
   &-400 {
     max-width: 400px;
@@ -87,6 +90,10 @@ body {
   &-500 {
     max-width: 500px;
   }
+}
+
+.justify-between {
+  justify-content: space-between;
 }
 
 .center {

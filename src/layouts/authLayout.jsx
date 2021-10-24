@@ -1,4 +1,4 @@
-const authLayout = ({ children }) => {
+const AuthLayout = ({ children }) => {
   return (
     <section className="section-login h-100">
       <div className="container h-100">
@@ -10,4 +10,4 @@ const authLayout = ({ children }) => {
   );
 };
 
-export default authLayout;
+export default AuthLayout;

@@ -67,6 +67,9 @@ body {
   color: #fff;
 }
 
+.mw-50 {
+  max-width: 50px;
+}
 .mw-100 {
   max-width: 100px;
 }
@@ -74,7 +77,7 @@ body {
   max-width: 200px;
 }
 .mw-300 {
-  max-width: 300px;
+  max-width: 340px;
 }
 .mw-400 {
   max-width: 400px;
@@ -399,23 +402,26 @@ ul li {
   font-size: 0.875rem;
 }
 
-.sidebar {
+#root .sidebar {
   width: inherit;
   background: #111827;
   background: linear-gradient(117.55deg, #262626, rgba(26, 26, 26, 0.96));
 }
-.sidebar a {
+#root .sidebar a {
   display: block;
   text-decoration: none;
   padding: 0 1rem 1rem 1rem;
 }
-.sidebar .img-home {
+#root .sidebar .img-home {
   padding: 1rem 0;
 }
-.sidebar .img-home img {
+#root .sidebar .img-home img {
   width: 30%;
 }
-.sidebar .btn-sideBar {
+#root .sidebar .isSelected {
+  background: #323539 !important;
+}
+#root .sidebar .btn-sideBar {
   width: 100%;
   background: unset;
   text-transform: uppercase;
@@ -423,11 +429,33 @@ ul li {
   height: 2.25rem;
   color: #fff;
 }
-.sidebar .btn-sideBar:hover {
+#root .sidebar .btn-sideBar:hover {
   background-color: #323539;
 }
-.sidebar .btn-sideBar .icon {
+#root .sidebar .btn-sideBar .icon {
   padding-right: 0.25rem;
+}
+#root .sidebar .btn-ocultar {
+  right: 0;
+  bottom: 20px;
+  font-size: 1.25rem;
+  color: #fff;
+  cursor: pointer;
+  transform: translateX(1.8rem);
+  border-radius: 50%;
+  width: 27px;
+  height: 27px;
+}
+#root .btn-mostrar {
+  right: 0;
+  bottom: 20px;
+  font-size: 1.25rem;
+  color: #fff;
+  cursor: pointer;
+  transform: translateX(1.8rem);
+  border-radius: 50%;
+  width: 27px;
+  height: 27px;
 }
 
 .sidebar-container i.icon-sidebar {
