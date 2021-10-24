@@ -225,7 +225,7 @@ const FilaProducto = ({ prod, index, eliminarProducto, modificarProducto }) => {
   return (
     <tr>
       <td>{producto._id}</td>
-      <td>{producto.name}</td>
+      <td>{producto.nombre}</td>
       <td>{producto.categoria}</td>
       <td>
         <label htmlFor={`valor_${index}`}>
@@ -242,14 +242,14 @@ const FilaProducto = ({ prod, index, eliminarProducto, modificarProducto }) => {
                 ...producto,
                 cantidad: e.target.value === "" ? "0" : e.target.value,
                 total:
-                  parseFloat(producto.valor) *
+                  parseFloat(producto.precio) *
                   parseFloat(e.target.value === "" ? "0" : e.target.value),
               });
             }}
           />
         </label>
       </td>
-      <td>{producto.valor}</td>
+      <td>{producto.precio}</td>
       <td>{parseFloat(producto.total ?? 0)}</td>
       <td>
         <i
@@ -257,7 +257,7 @@ const FilaProducto = ({ prod, index, eliminarProducto, modificarProducto }) => {
           className="fas fa-minus text-red-500 cursor-pointer"
         />
       </td>
-      <td className="hidden">
+      <td className="d-none">
         <input hidden defaultValue={producto._id} name={`producto_${index}`} />
       </td>
     </tr>

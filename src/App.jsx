@@ -8,7 +8,7 @@ import PrivateLayout from "layouts/PrivateLayout";
 import { useState } from "react";
 import { Auth0Provider } from "@auth0/auth0-react";
 import PrivateRoute from "components/PrivateRoute";
-import PublicLayout from "layouts/PublicLayout";
+
 function App() {
   const [userData, setUserData] = useState({});
 
@@ -40,10 +40,9 @@ function App() {
                       </PrivateRoute>
                     </Route>
                     <Route path="/admin/productos">
-                      <PrivateRoute
-                        roleList={["admin", "vendedor"]}
-                      ></PrivateRoute>
-                      <Productos />
+                      <PrivateRoute roleList={["admin", "vendedor"]}>
+                        <Productos />
+                      </PrivateRoute>
                     </Route>
                     <Route path="/admin/users">
                       <PrivateRoute roleList={["admin"]}>
@@ -62,29 +61,6 @@ function App() {
         </UserContext.Provider>
       </>
     </Auth0Provider>
-    // <Router>
-    //   <Switch>
-    //     <Route path={["/", "/ventas", "/productos", "/users"]}>
-    //       <PublicLayout>
-    //         <Switch>
-    //           <Route path="/ventas">
-    //             <Ventas />
-    //           </Route>
-    //           <Route path="/productos">
-    //             <Productos />
-    //           </Route>
-    //           <Route path="/users">
-    //             <Users />
-    //           </Route>
-
-    //           <Route path="/">
-    //             <Admin />
-    //           </Route>
-    //         </Switch>
-    //       </PublicLayout>
-    //     </Route>
-    //   </Switch>
-    // </Router>
   );
 }
 

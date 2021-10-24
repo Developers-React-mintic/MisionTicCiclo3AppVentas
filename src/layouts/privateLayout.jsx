@@ -29,7 +29,10 @@ const PrivateLayout = ({ children }) => {
       // 3. enviarle el token a el backend
       await obtenerDatosUsuario(
         (response) => {
-          console.log("response con datos del usuario", response);
+          console.log(
+            "response con datos del usuario en el private layout:",
+            response
+          );
           setUserData(response.data);
           setLoadingUserInformation(false);
         },
@@ -47,7 +50,12 @@ const PrivateLayout = ({ children }) => {
 
   if (isLoading || loadingUserInformation)
     return (
-      <ReactLoading type="balls" color="#abc123" height={667} width={375} />
+      <div className="d-flex-row center h-100 w-full">
+        <span>
+          cargando
+          <ReactLoading type="balls" color="#abc123" height={667} width={51} />
+        </span>
+      </div>
     );
 
   if (!isAuthenticated) {

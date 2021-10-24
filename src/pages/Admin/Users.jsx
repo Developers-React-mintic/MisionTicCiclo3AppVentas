@@ -40,7 +40,7 @@ const Users = () => {
           {usuarios.map((user) => {
             return (
               <tr key={nanoid()}>
-                <td>{user.nombre}</td>
+                <td>{user.name}</td>
                 <td>{user.email}</td>
                 <td>
                   <EstadoUsuario user={user} />

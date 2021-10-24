@@ -13,19 +13,6 @@ import PrivateComponent from "components/PrivateComponent";
 import { Tooltip, Dialog } from "@material-ui/core";
 import ReactLoading from "react-loading";
 
-// const productosBack = [
-//   {
-//     nombre: "Clavos",
-//     categoria: "comun",
-//     precio: "100",
-//   },
-//   {
-//     nombre: "lavamanos",
-//     categoria: "ducha",
-//     precio: "50000",
-//   },
-// ];
-
 const Productos = () => {
   const [mostrarTabla, setMostrarTabla] = useState(true);
   const [productos, setProductos] = useState([]);
@@ -90,6 +77,7 @@ const Productos = () => {
           listaProductos={productos}
           setProductos={setProductos}
           setMostrarTabla={setMostrarTabla}
+          setEjecutarConsulta={setEjecutarConsulta}
         />
       )}
 
@@ -152,7 +140,7 @@ const TablaProductos = ({ loading, listaProductos, setEjecutarConsulta }) => {
                 <th>Categoria</th>
                 <th>Precio</th>
                 <PrivateComponent roleList={["admin"]}>
-                  <th>Gestionar</th>
+                  <th className="w-125">Gestionar</th>
                 </PrivateComponent>
               </tr>
             </thead>
@@ -288,9 +276,9 @@ const FilaProducto = ({ producto, setEjecutarConsulta }) => {
           <td>{producto.precio}</td>
         </>
       )}
-      <PrivateComponent role={["admin"]}>
+      <PrivateComponent roleList={["admin"]}>
         <td>
-          <div className="d-flex w-full">
+          <div className="d-flex w-full justify-content-around">
             {edit ? (
               <>
                 <Tooltip title="Confirmar Edición" arrow>
@@ -307,7 +295,7 @@ const FilaProducto = ({ producto, setEjecutarConsulta }) => {
               <>
                 <Tooltip title="Editar Producto" arrow>
                   <i
-                    className="fas fa-pencil cursor-pointer"
+                    className="fas fa-pencil-alt cursor-pointer"
                     onClick={() => setEdit(!edit)}
                   />
                 </Tooltip>
@@ -346,7 +334,7 @@ const FilaProducto = ({ producto, setEjecutarConsulta }) => {
     </tr>
   );
 };
-const FormularioAggProductos = ({ setMostrarTabla }) => {
+const FormularioAggProductos = ({ setMostrarTabla, setEjecutarConsulta }) => {
   const form = useRef(null);
 
   const submitForm = async (e) => {
@@ -366,13 +354,13 @@ const FormularioAggProductos = ({ setMostrarTabla }) => {
       (response) => {
         console.log(response.data);
         toast.success("Producto agregado con éxito");
+        setEjecutarConsulta(true);
       },
       (error) => {
         console.error(error);
         toast.error("Error creando un producto");
       }
     );
-
     setMostrarTabla(true);
   };
   return (

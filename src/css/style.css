@@ -67,6 +67,10 @@ body {
   color: #fff;
 }
 
+.w-125 {
+  width: 125px;
+}
+
 .mw-50 {
   max-width: 50px;
 }
@@ -84,6 +88,10 @@ body {
 }
 .mw-500 {
   max-width: 500px;
+}
+
+.justify-between {
+  justify-content: space-between;
 }
 
 .center {
@@ -432,8 +440,10 @@ ul li {
 #root .sidebar .btn-sideBar:hover {
   background-color: #323539;
 }
-#root .sidebar .btn-sideBar .icon {
+#root .sidebar .btn-sideBar .icon-user {
   padding-right: 0.25rem;
+  border-radius: 50%;
+  width: 15%;
 }
 #root .sidebar .btn-ocultar {
   right: 0;

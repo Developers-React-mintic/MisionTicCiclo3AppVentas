@@ -106,7 +106,9 @@ const Sidebar = () => {
           </PrivateComponent>
         </div>
 
-        <button onClick={() => cerrarSesion()}>Cerrar Sesión</button>
+        <button className="btn-sideBar" onClick={() => cerrarSesion()}>
+          Cerrar Sesión
+        </button>
       </nav>
     </div>
   );
@@ -129,12 +131,16 @@ const Ruta = ({ nombre, ruta, icono, usuario }) => {
       <button className={`btn-sideBar ${isActive ? "isSelected" : ""}`}>
         {usuario ? (
           <>
-            <img src={usuario.picture} alt="imagen usuario" className="icon" />
+            <img
+              src={usuario.picture}
+              alt="imagen usuario"
+              className="icon-user"
+            />
             {usuario.name}
           </>
         ) : (
           <>
-            <i className="icon">{icono}</i> {nombre}
+            <i className="icon-user">{icono}</i> {nombre}
           </>
         )}
       </button>
