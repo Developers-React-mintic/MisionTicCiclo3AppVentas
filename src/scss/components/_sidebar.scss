@@ -1,0 +1,59 @@
+#root {
+  .sidebar {
+    width: inherit;
+    background: rgba(17, 24, 39, 1);
+    background: $fondo-login;
+    a {
+      display: block;
+      text-decoration: none;
+      padding: 0 1rem 1rem 1rem;
+    }
+    .img-home {
+      padding: 1rem 0;
+      img {
+        width: 30%;
+      }
+    }
+    .isSelected {
+      background: #323539 !important;
+    }
+    .btn-sideBar {
+      width: 100%;
+      background: unset;
+      text-transform: uppercase;
+      border: none;
+      height: 2.25rem;
+      color: $white;
+      &:hover {
+        background-color: #323539;
+      }
+      .icon-user {
+        padding-right: 0.25rem;
+        border-radius: 50%;
+        width: 15%;
+      }
+    }
+    .btn-ocultar {
+      right: 0;
+      bottom: 20px;
+      font-size: $font-20;
+      color: $white;
+      cursor: pointer;
+      transform: translateX(1.8rem);
+      border-radius: 50%;
+      width: 27px;
+      height: 27px;
+    }
+  }
+  .btn-mostrar {
+    right: 0;
+    bottom: 20px;
+    font-size: $font-20;
+    color: $white;
+    cursor: pointer;
+    transform: translateX(1.8rem);
+    border-radius: 50%;
+    width: 27px;
+    height: 27px;
+  }
+}
