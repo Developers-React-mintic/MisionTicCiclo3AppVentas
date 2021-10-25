@@ -40,7 +40,7 @@ const Test = () => {
 
     const options = {
       method: 'POST',
-      url: 'http://localhost:5000/ventas/',
+      url: 'https://salty-lowlands-63689.herokuapp.com/ventas/',
       headers: { 'Content-Type': 'application/json' },
       data: informacionConsolidada,
     };
