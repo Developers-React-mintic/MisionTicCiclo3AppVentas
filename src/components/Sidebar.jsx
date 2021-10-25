@@ -43,7 +43,7 @@ const Sidebar = () => {
   }, [toggleSidebar]);
 
   const cerrarSesion = () => {
-    logout({ returnTo: "https://developerscorpecommerce.herokuapp.com//" });
+    logout({ returnTo: "https://developerscorpecommerce.herokuapp.com/" });
     localStorage.setItem("token", null);
   };
 
