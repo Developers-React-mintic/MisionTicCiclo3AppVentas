@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { nanoid } from "nanoid";
 import { ToastContainer, toast } from "react-toastify";
+import PrivateComponent from "../../components/PrivateComponent";
 import { editarUsuario } from "utils/api";
 import { obtenerUsuarios } from "utils/api";
 import Table from "react-bootstrap/Table";
@@ -51,7 +52,7 @@ const Users = () => {
             );
           })}
         </tbody>
-      </Table>
+      </table>
       <ToastContainer
         position="bottom-center"
         autoClose={5000}
