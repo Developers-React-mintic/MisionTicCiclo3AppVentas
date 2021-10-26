@@ -65,7 +65,7 @@ export const obtenerUsuarios = async (successCallback, errorCallback) => {
   };
   await axios.request(options).then(successCallback).catch(errorCallback);
 };
-
+// obtiene la info del usuario logeado
 export const obtenerDatosUsuario = async (successCallback, errorCallback) => {
   const options = {
     method: "GET",
@@ -94,6 +94,16 @@ export const editarUsuario = async (
 
 // CRUD DE VENTAS
 
+export const obtenerVenta = async (successCallback, errorCallback) => {
+  const options = {
+    method: "GET",
+    url: `${baseURL}/ventas/`,
+    headers: { "Content-Type": "application/json", Authorization: getToken() },
+  };
+
+  await axios.request(options).then(successCallback).catch(errorCallback);
+};
+
 export const crearVenta = async (data, successCallback, errorCallback) => {
   const options = {
     method: "POST",
@@ -103,6 +113,22 @@ export const crearVenta = async (data, successCallback, errorCallback) => {
   };
   await axios.request(options).then(successCallback).catch(errorCallback);
 };
-// export const obtenerVenta = () => {};
-// export const editarVenta = () => {};
-// export const eliminarVenta = () => {};
+
+export const editarVenta = async (id, data, successCallback, errorCallback) => {
+  const options = {
+    method: "PATCH",
+    url: `${baseURL}/ventas/${id}/`,
+    headers: { "Content-Type": "application/json", Authorization: getToken() },
+    data,
+  };
+  await axios.request(options).then(successCallback).catch(errorCallback);
+};
+
+export const eliminarVenta = async (id, successCallback, errorCallback) => {
+  const options = {
+    method: "DELETE",
+    url: `${baseURL}/productos/${id}/`,
+    headers: { "Content-Type": "application/json", Authorization: getToken() },
+  };
+  await axios.request(options).then(successCallback).catch(errorCallback);
+};

@@ -1,20 +1,44 @@
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faBars, faX } from "@fortawesome/free-solid-svg-icons";
+import {
+  faBars,
+  faX,
+  faHammer,
+  faUserCircle,
+  faStore,
+} from "@fortawesome/free-solid-svg-icons";
+import { useAuth0 } from "@auth0/auth0-react";
+import PrivateComponent from "./PrivateComponent";
+
 const X = () => {
   return <FontAwesomeIcon icon={faX} />;
 };
 const hamburger = () => {
   return <FontAwesomeIcon icon={faBars} />;
 };
+const userIcon = () => {
+  return <FontAwesomeIcon icon={faUserCircle} />;
+};
+const ventas = () => {
+  return <FontAwesomeIcon icon={faStore} />;
+};
+const producto = () => {
+  return <FontAwesomeIcon icon={faHammer} />;
+};
+
 const SidebarResponsive = () => {
+  const { user, logout } = useAuth0();
   const [mostrarSidebar, setMostrarSidebar] = useState(false);
   const [fondoSidebar, setFondoSidebar] = useState("fondo");
+  const cerrarSesion = () => {
+    logout({ returnTo: "http://localhost:3000/" });
+    localStorage.setItem("token", null);
+  };
 
   useEffect(() => {
     if (mostrarSidebar) {
-      setFondoSidebar("fondo font-20");
+      setFondoSidebar("fondo ");
     } else {
       setFondoSidebar("off");
     }
@@ -22,7 +46,7 @@ const SidebarResponsive = () => {
 
   return (
     <div
-      className=" sidebar-container d-sm-block d-md-none align-items-start"
+      className=" sidebar-container fondo position-fixed d-sm-block d-md-none align-items-start"
       onClick={() => {
         setMostrarSidebar(!mostrarSidebar);
       }}
@@ -31,29 +55,72 @@ const SidebarResponsive = () => {
         {mostrarSidebar ? X() : hamburger()}
       </i>
       {mostrarSidebar && (
-        <ul className="fondo">
-          <ResponsiveRoute route={"/admin/perfil"} text={"perfil"} />
+        <ul className="d-flex flex-col fondo">
           <ResponsiveRoute
-            route={"/admin/productos"}
-            text={"Administrar productos"}
+            icono={userIcon}
+            usuario={user}
+            ruta={"/admin/perfil"}
+            nombre={"perfil"}
           />
-          <ResponsiveRoute
-            route={"/admin/ventas"}
-            text={"Administrar ventas"}
-          />
-          <ResponsiveRoute
-            route={"/admin/usuarios"}
-            text={"Administrar usuarios"}
-          />
+          <PrivateComponent roleList={["admin"]}>
+            <ResponsiveRoute
+              icono={producto}
+              ruta={"/admin/productos"}
+              nombre={"Administrar productos"}
+            />
+          </PrivateComponent>
+          <PrivateComponent roleList={["admin", "vendedor"]}>
+            <ResponsiveRoute
+              icono={ventas}
+              ruta={"/admin/ventas"}
+              nombre={"Administrar ventas"}
+            />
+          </PrivateComponent>
+          <PrivateComponent roleList={["admin"]}>
+            <ResponsiveRoute
+              icono={userIcon}
+              ruta={"/admin/usuarios"}
+              nombre={"Administrar usuarios"}
+            />
+          </PrivateComponent>
+          <button className="btn-sideBar" onClick={() => cerrarSesion()}>
+            Cerrar Sesión
+          </button>
         </ul>
       )}
     </div>
   );
 };
-const ResponsiveRoute = ({ route, text }) => {
+const ResponsiveRoute = ({ ruta, nombre, icono, usuario }) => {
+  const location = useLocation();
+  const [isActive, setIsActive] = useState(false);
+  console.log("usuario sidebar", usuario);
+  useEffect(() => {
+    if (location.pathname.includes(ruta)) {
+      setIsActive(true);
+    } else {
+      setIsActive(false);
+    }
+  }, [location, ruta]);
+
   return (
-    <Link to={route}>
-      <li>{text}</li>
+    <Link to={ruta}>
+      <button className={`btn-sideBar ${isActive ? "isSelected" : ""}`}>
+        {usuario ? (
+          <>
+            <img
+              src={usuario.picture}
+              alt="imagen usuario"
+              className="icon-user"
+            />
+            {usuario.name}
+          </>
+        ) : (
+          <>
+            <i className="icon-user">{icono}</i> {nombre}
+          </>
+        )}
+      </button>
     </Link>
   );
 };

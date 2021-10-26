@@ -124,7 +124,7 @@ const TablaProductos = ({ loading, listaProductos, setEjecutarConsulta }) => {
 
       <div className="d-sm-none d-md-flex">
         {loading ? (
-          <ReactLoading type="cylon" color="#abc123" height={667} width={375} />
+          <ReactLoading type="cylon" color="#242424" height={667} width={375} />
         ) : (
           <Table
             className="margin-top-15"
