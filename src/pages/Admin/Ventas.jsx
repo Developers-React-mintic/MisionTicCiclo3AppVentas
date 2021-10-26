@@ -13,6 +13,7 @@ import PrivateComponent from "components/PrivateComponent";
 import { ToastContainer, toast } from "react-toastify";
 import { Tooltip, Dialog } from "@material-ui/core";
 import ReactLoading from "react-loading";
+import Ventas1 from "./Ventas1";
 
 const Ventas = () => {
   const form = useRef(null);
@@ -21,7 +22,6 @@ const Ventas = () => {
   const [productosTabla, setProductosTabla] = useState([]);
   const [textoBoton, setTextoBoton] = useState("añadir producto nuevo");
   const [mostrarTabla, setMostrarTabla] = useState(true);
-
   const [ejecutarConsulta, setEjecutarConsulta] = useState(true);
   const [ventas, setVentas] = useState([]);
   const [loading, setLoading] = useState(false);
@@ -112,15 +112,16 @@ const Ventas = () => {
     await crearVenta(
       datosVenta,
       (response) => {
-        console.log(response);
+        console.log(response, datosVenta);
         toast.success("Venta agregada con Exito");
-        setMostrarTabla(true);
+        setEjecutarConsulta(true);
       },
       (error) => {
         console.error(error);
         toast.error("Ups la venta no se pudo agregar");
       }
     );
+    setMostrarTabla(true);
   };
 
   return (
@@ -147,11 +148,7 @@ const Ventas = () => {
         pauseOnHover
       />
       {mostrarTabla ? (
-        <TablaVentas
-          listaVentas={ventas}
-          loading={loading}
-          setEjecutarConsulta={setEjecutarConsulta}
-        />
+        <Ventas1 />
       ) : (
         <form
           ref={form}
@@ -160,8 +157,16 @@ const Ventas = () => {
         >
           <label className="flex flex-col" htmlFor="vendedor">
             <span className="text-2xl font-gray-900">Vendedor</span>
-            <select name="vendedor" className="p-2" defaultValue="" required>
-              <option disabled value="">
+            <select
+              name="vendedor"
+              className="p-2"
+              defaultValue=""
+              required
+              onChange={(e) => {
+                console.log("opt value", e.target.value);
+              }}
+            >
+              <option disabled value="" selected>
                 Seleccione un Vendedor
               </option>
               {vendedores.map((el) => {
@@ -177,7 +182,15 @@ const Ventas = () => {
             setProductos={setProductos}
             setProductosTabla={setProductosTabla}
           />
-
+          <label className="d-flex flex-col">
+            <span className="text-2xl font-gray-900">Valor Total Venta</span>
+            <input
+              className="bg-gray-50 border border-gray-600 p-2 rounded-lg m-2"
+              type="number"
+              name="valor"
+              required
+            />
+          </label>
           <button type="submit" className="">
             Crear Venta
           </button>
@@ -187,182 +200,6 @@ const Ventas = () => {
   );
 };
 
-const TablaVentas = ({ loading, listaVentas, setEjecutarConsulta }) => {
-  const [busqueda, setBusqueda] = useState("");
-  const [ventasFiltradas, setVentasFiltradas] = useState(listaVentas);
-
-  useEffect(() => {
-    setVentasFiltradas(
-      listaVentas.filter((elemento) => {
-        return JSON.stringify(elemento)
-          .toLowerCase()
-          .includes(busqueda.toLowerCase());
-      })
-    );
-  }, [busqueda, listaVentas]);
-  return (
-    <>
-      {loading ? (
-        <ReactLoading
-          className="center"
-          type="cylon"
-          color="#242424"
-          height={667}
-          width={375}
-        />
-      ) : (
-        <Table className="margin-top-15" striped bordered hover variant="dark">
-          <thead className="container h-200">
-            <tr>
-              <th>ID venta</th>
-              <th>Vendedor</th>
-              <th>Producto</th>
-              <th>Cantidad productos</th>
-              <th>Total venta</th>
-              <PrivateComponent roleList={["admin"]}>
-                <th className="w-125">Gestionar</th>
-              </PrivateComponent>
-            </tr>
-          </thead>
-          <tbody>
-            {ventasFiltradas.map((venta) => {
-              return (
-                <tr>
-                  <td>{venta._id}</td>
-                  <td>{venta.vendedor.name}</td>
-                  <td>{venta.productos.nombre}</td>
-                  <td>{venta.productos.length}</td>
-                  <td>{venta.productos.precio}</td>
-                  <td>edit delete</td>
-                </tr>
-              );
-            })}
-          </tbody>
-        </Table>
-      )}
-    </>
-  );
-};
-
-const FilaVentas = ({ venta, setEjecutarConsulta }) => {
-  const [edit, setEdit] = useState(false);
-  const [openDialog, setOpenDialog] = useState(false);
-  const [infoNuevaVenta, setinfoNuevaVenta] = useState({
-    _id: venta._id,
-    nombre: venta.vendedor.name,
-    categoria: venta.productos.length,
-    precio: venta.productos.precio,
-  });
-  const actualizarVentas = async () => {
-    await editarVenta(
-      venta._id,
-      {
-        nombre: infoNuevaVenta.nombre,
-        categoria: infoNuevaVenta.categoria,
-        precio: infoNuevaVenta.precio,
-      },
-      (response) => {
-        console.log(response.data);
-        toast.success("Venta modificado con éxito");
-        setEdit(false);
-        setEjecutarConsulta(true);
-      },
-      (error) => {
-        toast.error("Error modificando la venta");
-        console.error(error);
-      }
-    );
-  };
-
-  const deleteVenta = async () => {
-    await eliminarVenta(
-      venta._id,
-      (response) => {
-        console.log(response.data);
-        toast.success("Producto eliminado con éxito");
-        setEjecutarConsulta(true);
-      },
-      (error) => {
-        console.error(error);
-        toast.error("Error eliminando el Producto");
-      }
-    );
-
-    setOpenDialog(false);
-  };
-  return (
-    <tr>
-      {edit ? (
-        <>
-          <span>hola</span>
-        </>
-      ) : (
-        <>
-          <td>{venta._id.slice(20)}</td>
-          <td>{venta.vendedor.name}</td>
-          <td>{venta.productos.nombre}</td>
-          <td>{venta.productos.length}</td>
-          <td>{venta.productos.precio}</td>
-        </>
-      )}
-      <PrivateComponent roleList={["admin"]}>
-        <td>
-          <div className="d-flex w-full justify-content-around">
-            {edit ? (
-              <>
-                <Tooltip title="Confirmar Edición" arrow>
-                  <i
-                    className="fas fa-check cursor-pointer"
-                    onClick={() => actualizarVentas()}
-                  />
-                </Tooltip>
-                <Tooltip title="Cancelar Edición" arrow>
-                  <i className="fas fa-ban" onClick={() => setEdit(!edit)} />
-                </Tooltip>
-              </>
-            ) : (
-              <>
-                <Tooltip title="Editar Producto" arrow>
-                  <i
-                    className="fas fa-pencil-alt cursor-pointer"
-                    onClick={() => setEdit(!edit)}
-                  />
-                </Tooltip>
-                <Tooltip title="Eliminar Producto" arrow>
-                  <i
-                    className="fas fa-trash cursor-pointer"
-                    onClick={() => setOpenDialog(true)}
-                  />
-                </Tooltip>
-              </>
-            )}
-          </div>
-          <Dialog open={openDialog}>
-            <div className="p-8 flex flex-col">
-              <h1 className="text-gray-900 text-2xl font-bold">
-                ¿Está seguro de querer eliminar el Producto?
-              </h1>
-              <div className="d-flex w-full items-center justify-center my-4">
-                <button
-                  onClick={() => deleteVenta()}
-                  className="mx-2 px-4 py-2 bg-green-500 text-white hover:bg-green-700 rounded-md shadow-md"
-                >
-                  Sí
-                </button>
-                <button
-                  onClick={() => setOpenDialog(false)}
-                  className="mx-2 px-4 py-2 bg-red-500 text-white hover:bg-red-700 rounded-md shadow-md"
-                >
-                  No
-                </button>
-              </div>
-            </div>
-          </Dialog>
-        </td>
-      </PrivateComponent>
-    </tr>
-  );
-};
 const TablaProductos = ({ productos, setProductos, setProductosTabla }) => {
   const [productoAAgregar, setProductoAAgregar] = useState({});
   const [filasTabla, setFilasTabla] = useState([]);
@@ -375,6 +212,7 @@ const TablaProductos = ({ productos, setProductos, setProductosTabla }) => {
     setFilasTabla([...filasTabla, productoAAgregar]);
     setProductos(productos.filter((v) => v._id !== productoAAgregar._id));
     setProductoAAgregar({});
+    console.log("click", productoAAgregar);
   };
 
   const eliminarProducto = (productoAEliminar) => {
@@ -387,7 +225,7 @@ const TablaProductos = ({ productos, setProductos, setProductosTabla }) => {
       filasTabla.map((ft) => {
         if (ft._id === producto.id) {
           ft.cantidad = cantidad;
-          ft.total = producto.valor * cantidad;
+          ft.total = producto.precio * cantidad;
         }
         return ft;
       })
@@ -434,6 +272,7 @@ const TablaProductos = ({ productos, setProductos, setProductosTabla }) => {
           <tr>
             <th>Id</th>
             <th>Nombre</th>
+            <th>Nombre Vendedor</th>
             <th>Categoria</th>
             <th>Cantidad</th>
             <th>Valor Unitario</th>
