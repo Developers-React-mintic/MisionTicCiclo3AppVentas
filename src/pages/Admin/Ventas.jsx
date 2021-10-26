@@ -19,7 +19,7 @@ const Ventas = () => {
   const [vendedores, setVendedores] = useState([]);
   const [productos, setProductos] = useState([]);
   const [productosTabla, setProductosTabla] = useState([]);
-  const [textoBoton, setTextoBoton] = useState("añadir producto nuevo");
+  const [textoBoton, setTextoBoton] = useState("Registrar nueva venta");
   const [mostrarTabla, setMostrarTabla] = useState(true);
 
   const [ejecutarConsulta, setEjecutarConsulta] = useState(true);
@@ -28,9 +28,9 @@ const Ventas = () => {
   // renderizacion condicional
   useEffect(() => {
     if (mostrarTabla) {
-      setTextoBoton("añadir producto nuevo");
+      setTextoBoton("Registrar nueva venta");
     } else {
-      setTextoBoton("mostrar Tabla Productos");
+      setTextoBoton("Ver Ventas");
     }
   }, [mostrarTabla]);
   // obtener usuarios y productos
@@ -188,7 +188,7 @@ const Ventas = () => {
 };
 
 const TablaVentas = ({ loading, listaVentas, setEjecutarConsulta }) => {
-  const [busqueda, setBusqueda] = useState("");
+  const [busqueda] = useState("");
   const [ventasFiltradas, setVentasFiltradas] = useState(listaVentas);
 
   useEffect(() => {
@@ -230,7 +230,7 @@ const TablaVentas = ({ loading, listaVentas, setEjecutarConsulta }) => {
                 <tr>
                   <td>{venta._id}</td>
                   <td>{venta.vendedor.name}</td>
-                  <td>{venta.productos.nombre}</td>
+                  <td>{venta.productos.name}</td>
                   <td>{venta.productos.length}</td>
                   <td>{venta.productos.precio}</td>
                   <td>edit delete</td>
@@ -247,7 +247,7 @@ const TablaVentas = ({ loading, listaVentas, setEjecutarConsulta }) => {
 const FilaVentas = ({ venta, setEjecutarConsulta }) => {
   const [edit, setEdit] = useState(false);
   const [openDialog, setOpenDialog] = useState(false);
-  const [infoNuevaVenta, setinfoNuevaVenta] = useState({
+  const [infoNuevaVenta] = useState({
     _id: venta._id,
     nombre: venta.vendedor.name,
     categoria: venta.productos.length,
@@ -279,12 +279,12 @@ const FilaVentas = ({ venta, setEjecutarConsulta }) => {
       venta._id,
       (response) => {
         console.log(response.data);
-        toast.success("Producto eliminado con éxito");
+        toast.success("Venta eliminada con éxito");
         setEjecutarConsulta(true);
       },
       (error) => {
         console.error(error);
-        toast.error("Error eliminando el Producto");
+        toast.error("Error eliminando la venta");
       }
     );
 
