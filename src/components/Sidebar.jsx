@@ -118,7 +118,6 @@ const Sidebar = () => {
 const Ruta = ({ nombre, ruta, icono, usuario }) => {
   const location = useLocation();
   const [isActive, setIsActive] = useState(false);
-  console.log("usuario sidebar", usuario);
   useEffect(() => {
     if (location.pathname.includes(ruta)) {
       setIsActive(true);
