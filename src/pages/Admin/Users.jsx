@@ -53,6 +53,7 @@ const Users = () => {
           })}
         </tbody>
       </table>
+    </Table>
       <ToastContainer
         position="bottom-center"
         autoClose={5000}
