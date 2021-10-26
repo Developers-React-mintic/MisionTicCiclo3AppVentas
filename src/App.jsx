@@ -3,6 +3,7 @@ import Ventas from "pages/Admin/Ventas.jsx";
 import Productos from "pages/Admin/Productos";
 import Users from "pages/Admin/Users.jsx";
 import Admin from "pages/Admin/Admin";
+import Perfil from "pages/Admin/Perfil";
 import { UserContext } from "context/userContext";
 import PrivateLayout from "layouts/PrivateLayout";
 import { useState } from "react";
@@ -48,6 +49,9 @@ function App() {
                       <PrivateRoute roleList={["admin"]}>
                         <Users />
                       </PrivateRoute>
+                    </Route>
+                    <Route path="/admin/perfil">
+                      <Perfil />
                     </Route>
                     <Route path="/admin">
                       <Admin />

@@ -1,16 +1,36 @@
 .sidebar-container {
+  width: 100vw;
+  height: auto;
   i.icon-sidebar {
     padding-left: 0.25rem;
+    height: 36px;
+    margin: auto;
     svg {
-      font-size: 1.25rem;
+      font-size: 2rem;
     }
   }
   ul {
     width: 100vw;
     height: 100vh;
-    position: fixed;
     z-index: 1;
-
+    padding: 0;
+    .btn-sideBar {
+      font-size: 1.5rem;
+      width: 100%;
+      height: auto;
+      background: unset;
+      text-transform: uppercase;
+      border: none;
+      color: $white;
+      &:hover {
+        background-color: #323539;
+      }
+      .icon-user {
+        padding-right: 0.25rem;
+        border-radius: 50%;
+        width: 5%;
+      }
+    }
     li {
       color: $white;
       list-style: none;

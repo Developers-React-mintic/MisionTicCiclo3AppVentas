@@ -11,6 +11,7 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import { useAuth0 } from "@auth0/auth0-react";
 import PrivateComponent from "./PrivateComponent";
+
 const userIcon = () => {
   return <FontAwesomeIcon icon={faUserCircle} />;
 };
@@ -117,7 +118,7 @@ const Sidebar = () => {
 const Ruta = ({ nombre, ruta, icono, usuario }) => {
   const location = useLocation();
   const [isActive, setIsActive] = useState(false);
-  console.log("usuario", usuario);
+  console.log("usuario sidebar", usuario);
   useEffect(() => {
     if (location.pathname.includes(ruta)) {
       setIsActive(true);

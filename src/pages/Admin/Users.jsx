@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { nanoid } from "nanoid";
 import { ToastContainer, toast } from "react-toastify";
-
 import PrivateComponent from "../../components/PrivateComponent";
 import { editarUsuario } from "utils/api";
 import { obtenerUsuarios } from "utils/api";
+import Table from "react-bootstrap/Table";
+
 const Users = () => {
   const [usuarios, setUsuarios] = useState([]);
 
@@ -25,11 +26,8 @@ const Users = () => {
 
   return (
     <div>
-      <div>admin usuarios</div>
-      <PrivateComponent roleList={["admin"]}>
-        <button className="bg-red-400">Hola RBAC</button>
-      </PrivateComponent>
-      <table className="tabla">
+      <h1>admin usuarios</h1>
+      <Table className="margin-top-15" striped bordered hover variant="dark">
         <thead>
           <tr>
             <th>Nombre</th>
