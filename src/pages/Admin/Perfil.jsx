@@ -1,7 +1,7 @@
 //import { useAuth0 } from "@auth0/auth0-react";
 import { obtenerDatosUsuario } from "utils/api";
 import React, { useState, useEffect } from "react";
-import { Card } from "react-bootstrap";
+import { Card, ListGroup, ListGroupItem } from "react-bootstrap";
 
 const Perfil = () => {
   //const { user } = useAuth0();
@@ -28,17 +28,29 @@ const Perfil = () => {
   <Card.Header as="h2">Perfil</Card.Header>
 
   <Card.Body>
-  <Card.Title className="mb-2 text-muted">Nombre</Card.Title>
+  <ListGroup className="list-group-flush">
+  <ListGroupItem>
+
+    <Card.Subtitle className="mb-2 text-muted">Nombre</Card.Subtitle>
     <Card.Text>{usuario.name}</Card.Text>
-  <Card.Subtitle className="mb-2 text-muted">Correo</Card.Subtitle>
-    <Card.Text>{usuario.email}</Card.Text>
-    
-    
+  </ListGroupItem>
+  <ListGroupItem>
+
+    <Card.Subtitle className="mb-2 text-muted">Correo</Card.Subtitle>
+    <Card.Text>{usuario.email}</Card.Text>   
+    </ListGroupItem> 
+    <ListGroupItem>
+
     <Card.Subtitle className="mb-2 text-muted">Creación</Card.Subtitle>
     <Card.Text>{usuario.created_at}</Card.Text>
+    </ListGroupItem>
+    <ListGroupItem>
+
     <Card.Subtitle className="mb-2 text-muted">Rol</Card.Subtitle>
     <Card.Text>{usuario.rol}</Card.Text>
-    
+    </ListGroupItem>
+    </ListGroup>
+
     
   </Card.Body>
 </Card>
