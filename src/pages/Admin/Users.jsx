@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { nanoid } from "nanoid";
 import { ToastContainer, toast } from "react-toastify";
+
 import { editarUsuario } from "utils/api";
 import { obtenerUsuarios } from "utils/api";
 import Table from "react-bootstrap/Table";

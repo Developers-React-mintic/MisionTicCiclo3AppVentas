@@ -6,6 +6,7 @@ import ReactLoading from "react-loading";
 import { obtenerDatosUsuario } from "utils/api";
 import { useUser } from "context/userContext";
 
+
 const PrivateLayout = ({ children }) => {
   const {
     isAuthenticated,
@@ -39,7 +40,7 @@ const PrivateLayout = ({ children }) => {
         (err) => {
           console.log("err", err);
           setLoadingUserInformation(false);
-          logout({ returnTo: "http://localhost:3000/admin" });
+          logout({ returnTo: "https://developerscorpecommerce.herokuapp.com/admin" });
         }
       );
     };

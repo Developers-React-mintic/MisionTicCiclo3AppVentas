@@ -20,7 +20,7 @@ const Ventas = () => {
   const [vendedores, setVendedores] = useState([]);
   const [productos, setProductos] = useState([]);
   const [productosTabla, setProductosTabla] = useState([]);
-  const [textoBoton, setTextoBoton] = useState("añadir producto nuevo");
+  const [textoBoton, setTextoBoton] = useState("Registrar nueva venta");
   const [mostrarTabla, setMostrarTabla] = useState(true);
   const [ejecutarConsulta, setEjecutarConsulta] = useState(true);
   const [ventas, setVentas] = useState([]);
@@ -28,9 +28,9 @@ const Ventas = () => {
   // renderizacion condicional
   useEffect(() => {
     if (mostrarTabla) {
-      setTextoBoton("añadir producto nuevo");
+      setTextoBoton("Registrar nueva venta");
     } else {
-      setTextoBoton("mostrar Tabla Productos");
+      setTextoBoton("Ver Ventas");
     }
   }, [mostrarTabla]);
   // obtener usuarios y productos
