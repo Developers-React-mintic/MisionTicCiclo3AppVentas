@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { nanoid } from "nanoid";
+import { ToastContainer, toast } from "react-toastify";
 import { editarUsuario } from "utils/api";
 import { obtenerUsuarios } from "utils/api";
 import Table from "react-bootstrap/Table";
@@ -51,6 +52,17 @@ const Users = () => {
           })}
         </tbody>
       </Table>
+      <ToastContainer
+        position="bottom-center"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+      />
     </div>
   );
 };
@@ -64,9 +76,11 @@ const RolesUsuario = ({ user }) => {
         user._id,
         { rol },
         (res) => {
+          toast.success("Usuario modificado con éxito");
           console.log(res);
         },
         (err) => {
+          toast.error("Error actualizando el usuario");
           console.error(err);
         }
       );
@@ -97,9 +111,13 @@ const EstadoUsuario = ({ user }) => {
         user._id,
         { estado },
         (res) => {
+          toast.success("Usuario modificado con éxito");
+
           console.log(res);
         },
         (err) => {
+          toast.error("Error actualizando el usuario");
+
           console.error(err);
         }
       );
