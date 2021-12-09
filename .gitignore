@@ -5,6 +5,7 @@
 /.pnp
 .pnp.js
 /.vscode
+.pdf
 
 # testing
 /coverage
@@ -14,6 +15,7 @@
 /node_modules.rar
 
 # misc
+.pdf
 .DS_Store
 .env
 .env.local

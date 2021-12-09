@@ -336,32 +336,32 @@ ul li {
   background: linear-gradient(117.55deg, #262626, rgba(26, 26, 26, 0.96));
   overflow-y: scroll;
 }
-.section-login .container .row .col form {
+.section-login form {
   justify-content: center;
 }
-.section-login .container .row .col form .login-img {
+.section-login form .login-img {
   justify-content: center;
   align-items: center;
 }
-.section-login .container .row .col form .login-img img {
+.section-login form .login-img img {
   width: 35%;
 }
-.section-login .container .row .col form .ctn-title {
+.section-login form .ctn-title {
   padding-top: 4rem;
 }
-.section-login .container .row .col form .ctn-title h3 {
+.section-login form .ctn-title h3 {
   color: #fff;
   font-size: 1.875rem;
 }
-.section-login .container .row .col form .ctn-inputs label {
+.section-login form .ctn-inputs label {
   align-self: start;
   padding: 10px 0 5px 0;
   color: #fff;
   font-size: 1.125rem;
   line-height: 1.75rem;
 }
-.section-login .container .row .col form .ctn-inputs .email,
-.section-login .container .row .col form .ctn-inputs .password {
+.section-login form .ctn-inputs .email,
+.section-login form .ctn-inputs .password {
   background: #43434d;
   box-shadow: inset 0 2px 10px rgba(0, 0, 0, 0.16);
   border-radius: 0.25rem;
@@ -370,19 +370,19 @@ ul li {
   padding: 0.5rem;
   border: none;
 }
-.section-login .container .row .col form .ctn-password {
+.section-login form .ctn-password {
   margin-top: 1.25rem;
 }
-.section-login .container .row .col form .ctn-password .ctn-eye .eye-img {
+.section-login form .ctn-password .ctn-eye .eye-img {
   right: 14px;
   top: 7px;
   cursor: pointer;
 }
-.section-login .container .row .col form .container-btn {
+.section-login form .container-btn {
   margin-top: 1rem;
   margin-bottom: 2rem;
 }
-.section-login .container .row .col form .container-btn #btn-submit {
+.section-login form .container-btn #btn-submit {
   text-transform: uppercase;
   border-radius: 0.25rem;
   height: 2.5rem;
@@ -393,18 +393,18 @@ ul li {
   margin: auto;
   background: #5a99d8;
 }
-.section-login .container .row .col form .container-btn #btn-submit:hover {
+.section-login form .container-btn #btn-submit:hover {
   background: #5291cf;
   transition: ease 2ms;
 }
-.section-login .container .row .col form .ctn-save-pass .remember-while-login input {
+.section-login form .ctn-save-pass .remember-while-login input {
   margin: 0 8px 0 0;
 }
-.section-login .container .row .col form .ctn-save-pass .remember-while-login label {
+.section-login form .ctn-save-pass .remember-while-login label {
   color: #fff;
   font-size: 0.875rem;
 }
-.section-login .container .row .col form .ctn-save-pass .f-pass {
+.section-login form .ctn-save-pass .f-pass {
   color: #3b82f6;
   margin: 0;
   font-size: 0.875rem;

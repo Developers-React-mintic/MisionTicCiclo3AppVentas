@@ -9,62 +9,64 @@ import PrivateLayout from "layouts/PrivateLayout";
 import { useState } from "react";
 import { Auth0Provider } from "@auth0/auth0-react";
 import PrivateRoute from "components/PrivateRoute";
-
+import Login from "pages/login";
 function App() {
   const [userData, setUserData] = useState({});
 
   return (
-    <Auth0Provider
-      domain="mision-tic.us.auth0.com"
-      clientId="zAIuTblOYDjAjnAZ73wBYKjKi5mOb32V"
-      redirectUri="https://developerscorpecommerce.herokuapp.com/admin"
-      audience="api-autenticacion-ferreteria-mintic"
-    >
-      <>
-        <UserContext.Provider value={{ userData, setUserData }}>
-          <Router>
+    // <Auth0Provider
+    //   domain="mision-tic.us.auth0.com"
+    //   clientId="zAIuTblOYDjAjnAZ73wBYKjKi5mOb32V"
+    //   redirectUri="http://localhost:3000/admin"
+    //   audience="api-autenticacion-ferreteria-mintic"
+    // >
+    <>
+      <UserContext.Provider value={{ userData, setUserData }}>
+        <Router>
+          <Switch>
+            <Route
+              path={[
+                "/admin",
+                "/admin/ventas",
+                "/admin/productos",
+                "/admin/users",
+              ]}
+            >
+              <PrivateLayout>
+                <Switch>
+                  <Route path="/admin/ventas">
+                    <PrivateRoute roleList={["admin", "vendedor"]}>
+                      <Ventas />
+                    </PrivateRoute>
+                  </Route>
+                  <Route path="/admin/productos">
+                    <PrivateRoute roleList={["admin", "vendedor"]}>
+                      <Productos />
+                    </PrivateRoute>
+                  </Route>
+                  <Route path="/admin/users">
+                    <PrivateRoute roleList={["admin"]}>
+                      <Users />
+                    </PrivateRoute>
+                  </Route>
+                  <Route path="/admin/perfil">
+                    <Perfil />
+                  </Route>
+                  <Route path="/admin">
+                    <Admin />
+                  </Route>
+                </Switch>
+              </PrivateLayout>
+            </Route>
             <Switch>
-              <Route
-                path={[
-                  "/",
-                  "/admin",
-                  "/admin/ventas",
-                  "/admin/productos",
-                  "/admin/users",
-                ]}
-              >
-                <PrivateLayout>
-                  <Switch>
-                    <Route path="/admin/ventas">
-                      <PrivateRoute roleList={["admin", "vendedor"]}>
-                        <Ventas />
-                      </PrivateRoute>
-                    </Route>
-                    <Route path="/admin/productos">
-                      <PrivateRoute roleList={["admin", "vendedor"]}>
-                        <Productos />
-                      </PrivateRoute>
-                    </Route>
-                    <Route path="/admin/users">
-                      <PrivateRoute roleList={["admin"]}>
-                        <Users />
-                      </PrivateRoute>
-                    </Route>
-                    <Route path="/admin/perfil">
-                      <Perfil />
-                    </Route>
-                    <Route path="/admin">
-                      <Admin />
-                    </Route>
-                    <Route path="/"></Route>
-                  </Switch>
-                </PrivateLayout>
+              <Route path="/login">
+                <Login />
               </Route>
             </Switch>
-          </Router>
-        </UserContext.Provider>
-      </>
-    </Auth0Provider>
+          </Switch>
+        </Router>
+      </UserContext.Provider>
+    </>
   );
 }
 
